@@ -1,7 +1,10 @@
-from collections import UserList
-from email.policy import default
 from blog import db
 from datetime import datetime
+
+tags = db.Table('tags',
+                db.Column('users',db.Integer,db.ForeignKey('roles.id')),
+                db.Column('roles',db.Integer,db.ForeignKey('users.id')))
+
 
 class User(db.Model):
     __tablename__='users'
@@ -11,7 +14,7 @@ class User(db.Model):
     sales=db.relationship("Sale",backref="users",cascade="delete,merge")
     posts=db.relationship('Post',backref="users",cascade="delete,merge")
     file=db.relationship('FileUser',backref="users",cascade="delete,merge",uselist=False)
-    roles=db.relationship('Role',backref="users",cascade="delete,merge", useList=True)
+    roles=db.relationship('User',secondary=tags)
     def __init__(self,username,password) -> None:
         self.username = username
         self.password= password
@@ -51,10 +54,10 @@ class Post(db.Model):
         return f'Post: {self.author}'
 
 class Role(db.Model):
+    __tablename__="roles"
     id = db.Column(db.Integer(), primary_key=True,autoincrement=True)
     name = db.Column(db.String(50),default="super_user")
-    user_id=db.Column(db.Integer,db.ForeignKey('users.id',ondelete='CASCADE'))
-
+    courses = db.relationship('User',secondary=tags)
     def __init__(self,name):
         self.name=name
     
