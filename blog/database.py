@@ -2,8 +2,8 @@ from blog import db
 from datetime import datetime
 
 tags = db.Table('tags',
-                db.Column('users',db.Integer,db.ForeignKey('roles.id')),
-                db.Column('roles',db.Integer,db.ForeignKey('users.id')))
+                db.Column('users_id',db.Integer,db.ForeignKey('users.id',ondelete="CASCADE")),
+                db.Column('roles_id',db.Integer,db.ForeignKey('roles.id',ondelete="CASCADE")))
 
 
 class User(db.Model):
@@ -14,7 +14,7 @@ class User(db.Model):
     sales=db.relationship("Sale",backref="users",cascade="delete,merge")
     posts=db.relationship('Post',backref="users",cascade="delete,merge")
     file=db.relationship('FileUser',backref="users",cascade="delete,merge",uselist=False)
-    roles=db.relationship('User',secondary=tags)
+    roles=db.relationship('Role',secondary=tags)
     def __init__(self,username,password) -> None:
         self.username = username
         self.password= password
@@ -53,11 +53,25 @@ class Post(db.Model):
     def __repr__(self) -> str:
         return f'Post: {self.author}'
 
+    class FileUser(db.Model):
+        __tablename__='files'
+        id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+        name=db.Column(db.String(50))
+        username_id=db.Column(db.Integer,db.ForeignKey("users.id",ondelete='CASCADE'))
+        url=db.Column(db.String(100),nullable=False)
+        created=db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
+
+        def __init__(self,name,username_id,url)-> None:
+                self.name=name
+                self.username_id=username_id
+                self.url=url
+        def __repr__(self) -> str:
+            return f'Name: {self.name}'
 class Role(db.Model):
     __tablename__="roles"
     id = db.Column(db.Integer(), primary_key=True,autoincrement=True)
     name = db.Column(db.String(50),default="super_user")
-    courses = db.relationship('User',secondary=tags)
+    users = db.relationship('User',secondary=tags,overlaps="roles")
     def __init__(self,name):
         self.name=name
     
