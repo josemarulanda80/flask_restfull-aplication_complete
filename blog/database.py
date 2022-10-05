@@ -1,3 +1,4 @@
+from enum import unique
 from blog import db
 from datetime import datetime
 
@@ -29,7 +30,6 @@ class Sale(db.Model):
     venta=db.Column(db.Integer)
     ventas_productos=db.Column(db.Integer)
     created=db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
-
     def __init__(self,username_id,venta,ventas_productos)-> None:
         self.username_id=username_id
         self.venta=venta
@@ -44,8 +44,6 @@ class Post(db.Model):
     title = db.Column(db.String(100))
     body= db.Column(db.Text)
     created=db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
-
-
     def __init__(self,author,title,body) -> None:
         self.author=author
         self.title=title
@@ -67,13 +65,13 @@ class Post(db.Model):
                 self.url=url
         def __repr__(self) -> str:
             return f'Name: {self.name}'
+
 class Role(db.Model):
     __tablename__="roles"
     id = db.Column(db.Integer(), primary_key=True,autoincrement=True)
-    name = db.Column(db.String(50),default="super_user")
+    name = db.Column(db.String(50),unique=True)
     users = db.relationship('User',secondary=tags,overlaps="roles")
     def __init__(self,name):
         self.name=name
-    
     def __repr__(self) -> str:
         return f'Role: {self.name}'
