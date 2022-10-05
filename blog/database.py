@@ -51,19 +51,19 @@ class Post(db.Model):
     def __repr__(self) -> str:
         return f'Post: {self.author}'
 
-    class FileUser(db.Model):
-        __tablename__='files'
-        id = db.Column(db.Integer,primary_key=True,autoincrement=True)
-        name=db.Column(db.String(50))
-        username_id=db.Column(db.Integer,db.ForeignKey("users.id",ondelete='CASCADE'))
-        url=db.Column(db.String(100),nullable=False)
-        created=db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
+class FileUser(db.Model):
+    __tablename__='files'
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    name=db.Column(db.String(50))
+    username_id=db.Column(db.Integer,db.ForeignKey("users.id",ondelete='CASCADE'))
+    url=db.Column(db.String(100),nullable=False)
+    created=db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
 
-        def __init__(self,name,username_id,url)-> None:
+    def __init__(self,name,username_id,url)-> None:
                 self.name=name
                 self.username_id=username_id
                 self.url=url
-        def __repr__(self) -> str:
+    def __repr__(self) -> str:
             return f'Name: {self.name}'
 
 class Role(db.Model):
