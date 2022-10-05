@@ -35,3 +35,20 @@ def new_files():
 def new_roles():
     new_role=Role(name="super_user")
     return new_role
+
+@pytest.fixture(scope='module')
+def create_new_user():
+    json={"username":randlowercase,"password":"12"}
+    return json 
+
+@pytest.fixture(scope='module')
+def user_existing():
+    json={"username":"admin","password":"admin"}
+    return json 
+
+@pytest.fixture(scope='module')
+def user_delete():
+    user = User.query.all()
+    last_user=user[-1]
+   
+    return last_user.id 

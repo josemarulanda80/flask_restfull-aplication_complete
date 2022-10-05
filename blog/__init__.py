@@ -15,6 +15,6 @@ ma.init_app(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 #Importar vistas
-from blog.mod.resources import api_bp
+from blog.modUser.resources import api_bp
 app.register_blueprint(api_bp)
 db.create_all()

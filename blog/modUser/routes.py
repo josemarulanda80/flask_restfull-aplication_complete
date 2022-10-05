@@ -23,6 +23,8 @@ class Auth(Resource):
             user=user_schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 422
+        except TypeError:
+            return {"message":"bad request"},400
         user_name= User.query.filter_by(username = user.username).first()
         if user_name != None:
             return {"message":"Usuario ya registrado"},400
@@ -38,15 +40,9 @@ class Auth(Resource):
         return {"User_id":user.id},201
 
     def delete(self):
-
-        try:
-            data=request.args.get('id')
-            print(data)
-        except ValidationError as err:
-            return err.messages, 422
-
+        data=request.args.get('id')
         if data == None or data == "":
-            return {"message":"bad request"},400
+            return {"message":"bad request"}, 400
         user_name = User.query.filter_by(id=data).first()
         if user_name!=None:
             db.session.delete(user_name)
