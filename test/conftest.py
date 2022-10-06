@@ -52,3 +52,33 @@ def user_delete():
     last_user=user[-1]
    
     return last_user.id 
+
+@pytest.fixture(scope='module')
+def user_bad_json():
+    json={"usernae":"admin"}
+    return json
+
+@pytest.fixture(scope='module')
+def response_user_bad_json():
+    json= {"usernae": ["Unknown field."]}
+    return json
+
+@pytest.fixture(scope='module')
+def new_role():
+    json={"name":randlowercase+randlowercase+randlowercase+randlowercase+randlowercase+str(100*random.random())}
+    return json
+
+@pytest.fixture(scope='module')
+def id_role():
+    rol = Role.query.all()
+    return rol[-1].id
+
+@pytest.fixture(scope='module')
+def id_new_role():
+    rol = Role.query.all()
+    return rol[1].id
+
+@pytest.fixture(scope='module')
+def name_new_role():
+    rol = Role.query.all()
+    return rol[1].name

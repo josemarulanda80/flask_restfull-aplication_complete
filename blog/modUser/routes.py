@@ -61,6 +61,8 @@ class Session(Resource):
             user=user_schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 422
+        except TypeError:
+            return {"message":"bad request"},400
         user_name= User.query.filter_by(username = user.username).first()
         if user_name == None:
             return {"message":"Usuario no existe"},404
@@ -79,6 +81,8 @@ class AddRoles(Resource):
             role=role_schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 422
+        except TypeError:
+            return {"message":"bad request"},400
 
         role_name= Role.query.filter_by(name = role.name).first()
         if role_name != None:
@@ -102,17 +106,19 @@ class AddRoles(Resource):
 
 
 class UpdateRoles(Resource):
-
     def put(self,id_rol):
         try:
             role=role_schema.load(request.get_json())
         except ValidationError as err:
             return err.messages, 422
-
+        except TypeError:
+            return {"message":"bad request"},400
+        
         role_name= Role.query.filter_by(id = id_rol).first()
-        if role_name == None:
-            return {"message":"Not found"},404
-
+    
+        if role_name==None:
+            
+            abort(404)
         try:
             role_name.name=role.name
             db.session.commit()
@@ -127,7 +133,7 @@ class UpdateRoles(Resource):
         user = User.query.filter_by(id=data["id_user"]).first()
         role = Role.query.filter_by(id=id_rol).first()
         if user == None or role ==None:
-            return {"message":"Not Founf"},404
+            return {"message":"Not found"},404
         user.roles.append(role)
         db.session.add_all([user,role])
         db.session.commit()
