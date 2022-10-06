@@ -175,11 +175,11 @@ def test_put_not_role():
         assert response.status_code==404
         assert response.json["message"]=="The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again."
 
-def test_put_update(id_new_role,new_role):
+def test_put_update(id_new_role,new_role_update):
     """actualizar role"""
     flask_app =app
     with flask_app.test_client() as test_client:
-        response = test_client.put(f'/auth/user/roles/{id_new_role}',json={"name":new_role["name"]})
+        response = test_client.put(f'/auth/user/roles/{id_new_role}',json={"name":new_role_update["name"]})
         assert response.status_code==200
         assert response.json=={"message":"rol actualizado"}
 

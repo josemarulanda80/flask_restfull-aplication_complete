@@ -69,6 +69,11 @@ def new_role():
     return json
 
 @pytest.fixture(scope='module')
+def new_role_update():
+    json={"name":randlowercase+randlowercase+randlowercase+str(100*random.random())}
+    return json
+
+@pytest.fixture(scope='module')
 def id_role():
     rol = Role.query.all()
     return rol[-1].id
