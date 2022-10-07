@@ -1,5 +1,5 @@
 from flask import  Blueprint
-from flask_restful import Api, Resource, url_for
+from flask_restful import Api
 from blog.modUser.routes import AddRoles, Auth, Session, UpdateRoles
 
 api_bp = Blueprint('api',__name__,url_prefix='/auth')
