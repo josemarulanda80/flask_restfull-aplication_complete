@@ -3,7 +3,7 @@ from flask_restful import Resource
 from flask import (json,request,abort,session)
 import sqlalchemy
 from blog.database import Role, User
-from blog.common.models.auth import RoleSchema, UserSchema
+from blog.common.utils.auth import RoleSchema, UserSchema
 from werkzeug.security import generate_password_hash,check_password_hash
 import jwt,json
 from marshmallow import ValidationError
@@ -49,7 +49,7 @@ class Auth(Resource):
             db.session.commit()
             return "",204
         else:
-            return {"message":"archivo no existe"},404
+            return {"message":"Not found"},404
 
 class Session(Resource):
     """Clase relacionada con enviar cerrar sesion y loguear usuarios"""
@@ -66,9 +66,12 @@ class Session(Resource):
         user_name= User.query.filter_by(username = user.username).first()
         if user_name == None:
             return {"message":"Usuario no existe"},404
+        print(check_password_hash(user_name.password, user.password))
         if check_password_hash(user_name.password, user.password):
             token = jwt.encode({'public_id': user.username, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config.get('SECRET_KEY'))
             return {'token' : token,"id":user_name.id},200
+        else:
+            return {"message":"bad request"},400
 
 class AddRoles(Resource):
     """Clase para obtener roles, crear roles y borrarlos"""
@@ -102,7 +105,7 @@ class AddRoles(Resource):
             db.session.commit()
             return "",204
         else:
-            return {"message":"archivo no existe"},404
+            return {"message":"Not found"},404
 
 
 class UpdateRoles(Resource):
@@ -113,12 +116,9 @@ class UpdateRoles(Resource):
             return err.messages, 422
         except TypeError:
             return {"message":"bad request"},400
-        
         role_name= Role.query.filter_by(id = id_rol).first()
-    
         if role_name==None:
-            
-            abort(404)
+            return {"message":"Not found"},404
         try:
             role_name.name=role.name
             db.session.commit()

@@ -46,7 +46,7 @@ def test_deleate_no_id():
     with flask_app.test_client() as test_client:
         response = test_client.delete('/auth/user',query_string={"id":-1})
         assert response.status_code == 404
-        assert response.json=={"message":"archivo no existe"}
+        assert response.json=={"message":"Not found"}
 
 def test_deleate_existing_user(user_delete):
     """Borrar un usuario que no existe"""
@@ -173,7 +173,7 @@ def test_put_not_role():
     with flask_app.test_client() as test_client:
         response = test_client.put(f'/auth/user/roles/{0}',json={"name":"jfd"})
         assert response.status_code==404
-        assert response.json["message"]=="The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again."
+        assert response.json["message"]=="Not found"
 
 def test_put_update(id_new_role,new_role_update):
     """actualizar role"""
@@ -217,4 +217,11 @@ def test_post_role_user_correct():
     with flask_app.test_client() as test_client:
         response = test_client.post(f'/auth/user/roles/1',json={"id_user":1})
         assert response.status_code==201
-        
+
+def test_error_login_password():
+    """"""
+    flask_app =app
+    with flask_app.test_client() as test_client:
+        response = test_client.post('/auth/login',json={"username":"admin","password":"ad"})
+        assert response.status_code == 400
+        assert response.json == {"message":"bad request"}
