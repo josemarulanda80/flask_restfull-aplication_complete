@@ -1,7 +1,8 @@
 
 from flask_restful import Resource
-from flask import (json,request,abort,session)
+from flask import (json,request)
 import sqlalchemy
+from blog.common.utils.Schema_global import IdSchema
 from blog.database import Role, User
 from blog.common.utils.auth import RoleSchema, UserSchema
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -11,7 +12,7 @@ from blog import db
 import datetime
 from blog import app
 
-
+id_schema=IdSchema()
 user_schema = UserSchema()
 role_schema= RoleSchema()
 
@@ -40,10 +41,8 @@ class Auth(Resource):
         return {"User_id":user.id},201
 
     def delete(self):
-        data=request.args.get('id')
-        if data == None or data == "":
-            return {"message":"bad request"}, 400
-        user_name = User.query.filter_by(id=data).first()
+        data=id_schema.load(request.args)
+        user_name = User.query.filter_by(id=data["id"]).first()
         if user_name!=None:
             db.session.delete(user_name)
             db.session.commit()
@@ -96,10 +95,8 @@ class AddRoles(Resource):
         return {"Role_id":role.id},201
 
     def delete(self):
-        data=request.args.get('id')
-        if data == None or data == "":
-            return {"message":"bad request"},400
-        role_name = Role.query.filter_by(id=data).first()
+        data=id_schema.load(request.args)
+        role_name = Role.query.filter_by(id=data["id"]).first()
         if role_name!=None:
             db.session.delete(role_name)
             db.session.commit()

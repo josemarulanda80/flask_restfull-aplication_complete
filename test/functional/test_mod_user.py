@@ -32,13 +32,7 @@ def test_created_new_user(create_new_user):
         response = test_client.post('/auth/user',json=create_new_user)
         assert response.status_code == 201
 #2
-def test_deleate_no_data():
-    """Borrar un usuario que no existe"""
-    flask_app =app
-    with flask_app.test_client() as test_client:
-        response = test_client.delete('/auth/user',query_string={})
-        assert response.status_code == 400
-        assert response.json=={"message":"bad request"}
+
 
 def test_deleate_no_id():
     """Borrar un usuario que no existe"""

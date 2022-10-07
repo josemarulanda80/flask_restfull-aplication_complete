@@ -1,7 +1,3 @@
-from xml.etree.ElementInclude import include
-from flask_marshmallow import Marshmallow
-from marshmallow_sqlalchemy import auto_field
-from sqlalchemy import true
 from blog import ma
 from blog.database import Role, User
 
@@ -16,6 +12,7 @@ class RoleSchema(ma.SQLAlchemyAutoSchema):
 
     class Meta:
         model=Role
+        include_fk =True
         include_relationships=True
         load_instance=True
     
