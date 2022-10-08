@@ -41,7 +41,10 @@ class Auth(Resource):
         return {"User_id":user.id},201
 
     def delete(self):
-        data=id_schema.load(request.args)
+        try:
+            data=id_schema.load(request.args)
+        except ValidationError as err:
+            return err.messages, 422
         user_name = User.query.filter_by(id=data["id"]).first()
         if user_name!=None:
             db.session.delete(user_name)
@@ -95,7 +98,10 @@ class AddRoles(Resource):
         return {"Role_id":role.id},201
 
     def delete(self):
-        data=id_schema.load(request.args)
+        try:
+            data=id_schema.load(request.args)
+        except ValidationError as err:
+            return err.messages, 422
         role_name = Role.query.filter_by(id=data["id"]).first()
         if role_name!=None:
             db.session.delete(role_name)

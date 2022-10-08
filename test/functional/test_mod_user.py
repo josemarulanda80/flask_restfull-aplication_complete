@@ -49,6 +49,13 @@ def test_deleate_existing_user(user_delete):
         response = test_client.delete('/auth/user',query_string={"id":user_delete})
         assert response.status_code == 204
 
+def test_deleate_existing_json_incorrect():
+    """Borrar un usuario que no existe"""
+    flask_app =app
+    with flask_app.test_client() as test_client:
+        response = test_client.delete('/auth/user',query_string={"i":""})
+        assert response.status_code == 422
+
 def test_close_sesion_login():
     """Cerrar sesión"""
     flask_app =app
@@ -119,7 +126,7 @@ def test_post_rol_existeng():
     """agregar un rol existente"""
     flask_app =app
     with flask_app.test_client() as test_client:
-        response = test_client.post('/auth/user/roles',json={"name":"edit"})
+        response = test_client.post('/auth/user/roles',json={"name":"ss"})
         assert response.status_code == 400
         assert response.json =={"message":"Role ya registrado"}
 
@@ -144,6 +151,12 @@ def test_delete_rol_no_existing():
         response = test_client.delete('/auth/user/roles',query_string={"id":-1})
         assert response.status_code == 404
 
+def test_delete_rol_no_existing_no_json():
+    """borrar un nuevo rol"""
+    flask_app =app
+    with flask_app.test_client() as test_client:
+        response = test_client.delete('/auth/user/roles',query_string={"i":""})
+        assert response.status_code == 422
 #5
 def test_put_role_bad_json(id_role):
     """actualizar role con un json que no existe"""

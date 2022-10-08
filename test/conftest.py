@@ -1,3 +1,4 @@
+import json
 from blog.database import User,Post,Sale,FileUser,Role
 import random
 import pytest
@@ -87,3 +88,39 @@ def id_new_role():
 def name_new_role():
     rol = Role.query.all()
     return rol[1].name
+
+@pytest.fixture(scope='module')
+def post_user_bad():
+    json=  { "author": 0, "body": "python coifwsnciosc", "title": "algo"}
+    return json
+
+@pytest.fixture(scope='module')
+def post_boby_bad_write():
+    json=  { "author": 0, "bdy": "python coifwsnciosc", "title": "algo"}
+    return json
+
+@pytest.fixture(scope='module')
+def post_correct():
+    json=  { "author": 2, "body": "python coifwsnciosc", "title": "algo"}
+    return json
+
+
+@pytest.fixture(scope='module')
+def delete_post():
+    post=Post.query.all()
+    
+    return post[-1].id
+
+
+@pytest.fixture(scope='module')
+def modificated_post():
+    return {"id":1,"title":"bjkhhjjkjkody","body":"fdf"}
+
+
+@pytest.fixture(scope='module')
+def post_no_body():
+    return {"id":2, "title":"bodddy",  "":"fdf"}
+
+@pytest.fixture(scope='module')
+def post_body_correct():
+    return{"id":2,"title":"body","body":"title"}

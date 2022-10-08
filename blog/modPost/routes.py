@@ -21,11 +21,7 @@ class PostBlog(Resource):
 
     def get(self):
         posts=Post.query.all()
-        
-        if posts != None:      
-            return {"post":[{"id":i.id,"title":i.title,"body":i.body}for i in posts]},200
-        else:
-            return {"message":"Not found"}
+        return {"post":[{"id":i.id,"title":i.title,"body":i.body}for i in posts]},200
     
     def post(self):
         try:
@@ -46,8 +42,7 @@ class PostBlog(Resource):
             data=id_schema.load(request.args)
         except ValidationError as err:
             return err.messages, 422
-        except TypeError:
-            return {"message":"bad request"},400
+       
         post = Post.query.filter_by(id=data["id"]).first()
         if post!=None:
             db.session.delete(post)
@@ -58,20 +53,23 @@ class PostBlog(Resource):
     
     def put(self):
         try:
-         data = post_put_schema.load(request.get_json())
+            data=post_put_schema.load(request.get_json())
+            print (data)
         except ValidationError as err:
             return err.messages, 422
-        except TypeError:
-            return {"message":"Bad request"},400
-     
+        
+        if "title" not in data or "id" not in data or "body" not in data:
+            return {"message":"bad request"},400
+       
         post= Post.query.filter_by(id=data["id"]).first()
+
         if post != None:
             post.title=data["title"]
             post.body=data["body"]
             db.session.commit()
             return {"message":"Post actualizado correctamente"},200
         else:
-            {"Not Found"},404
+            return {"message":"Not Found"},404
 
 class BlogUser(Resource):
     def get(self,id):
