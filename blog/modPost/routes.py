@@ -42,7 +42,12 @@ class PostBlog(Resource):
         return {"post_id":post.id},201
 
     def delete(self):
-        data=id_schema.load(request.args)
+        try:
+            data=id_schema.load(request.args)
+        except ValidationError as err:
+            return err.messages, 422
+        except TypeError:
+            return {"message":"bad request"},400
         post = Post.query.filter_by(id=data["id"]).first()
         if post!=None:
             db.session.delete(post)
@@ -69,10 +74,13 @@ class PostBlog(Resource):
             {"Not Found"},404
 
 class BlogUser(Resource):
-    def get(self,id_user):
+    def get(self,id):
+  
+        data = id_schema.load(request.view_args)
+      
        
-        all = Post.query.filter_by(author=id_user)
-        user = User.query.filter_by(id=id_user).first()
+        all = Post.query.filter_by(author=data['id'])
+        user = User.query.filter_by(id=data['id']).first()
         if user == None:
             return {"message":"Not Found"},404
         else:
@@ -81,9 +89,12 @@ class BlogUser(Resource):
 
 class UniqueBlog(Resource):
 #     data = json.loads(request.data)
-    def get(self,id_blog):
+    def get(self,id):
+ 
+        data = id_schema.load(request.view_args)
         
-        post = Post.query.filter_by(id=id_blog).first()
+  
+        post = Post.query.filter_by(id=data['id']).first()
         if post!=None:
             return {"title":post.title,"body":post.body,"id":post.id},200
         else:

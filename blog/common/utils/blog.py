@@ -11,5 +11,4 @@ class PostSchema(ma.SQLAlchemyAutoSchema):
     author=auto_field()
 
 class PostPutSchema(ma.Schema):
-    class Meta:
-        fields = ('id','title','body',)
+    fields = ('id','title','body',)

@@ -8,5 +8,5 @@ api = Api(api_post)
 
 
 api.add_resource(PostBlog,'')
-api.add_resource(UniqueBlog,"/<int:id_blog>")
-api.add_resource(BlogUser,'/user/<int:id_user>/posts')
+api.add_resource(UniqueBlog,"/<int:id>")
+api.add_resource(BlogUser,'/user/<int:id>/posts')
