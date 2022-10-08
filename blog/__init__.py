@@ -17,6 +17,8 @@ migrate = Migrate(app, db)
 #Importar vistas
 from blog.modUser.resources import api_bp
 from blog.modPost.resources import api_post
+from blog.modFile.resources import api_file
 app.register_blueprint(api_bp)
 app.register_blueprint(api_post)
+app.register_blueprint(api_file)
 db.create_all()

@@ -1,15 +1,9 @@
 
 from flask_restful import Resource
-from flask import (json,request)
-import sqlalchemy
+from flask import (request)
 from blog.database import Post,User
-from blog.common.utils.auth import RoleSchema, UserSchema
-from werkzeug.security import generate_password_hash,check_password_hash
-import jwt,json
 from marshmallow import ValidationError
 from blog import db
-import datetime
-from blog import app
 from blog.common.utils.blog import PostPutSchema, PostSchema
 from blog.common.utils.Schema_global import IdSchema
 
