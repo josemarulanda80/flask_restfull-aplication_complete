@@ -1,11 +1,12 @@
 from flask_restful import Resource
-from flask import (request,send_from_directory)
+from flask import (request,send_from_directory,render_template,make_response)
 from blog.database import User,FileUser
 from marshmallow import ValidationError
 from blog import db
 from blog.common.utils.Schema_global import IdSchema, NameFileSchema
 from blog import app
 from os import  getcwd, path,remove
+import pdfkit
 
 name_file_image=NameFileSchema()
 id_schema=IdSchema()
@@ -69,3 +70,24 @@ class UserImg(Resource):
                 return {"message":"Not Found"}
             else:
                 return {"url":file.url},200
+
+class PdfUser(Resource):
+    """para descargar archivo pdf"""
+    def get(self,id):
+        path_wkthmltopdf = b'C:\Program Files\wkhtmltopdf\\bin\wkhtmltopdf.exe'
+        config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+    
+        data = id_schema.load(request.view_args)
+        
+        user=User.query.filter_by(id=data['id']).first()
+        file =FileUser.query.filter_by(username_id=data['id']).first()
+        if user ==None:
+            return {"message":"Not Found"},404
+        if file ==None:
+            return {"message":"Not Found"},404
+        res = render_template("index.html",name=user.id,username=user.username,fecha=file.created,url=file.url)
+        responsestring=pdfkit.from_string(res,False,configuration=config)
+        response=make_response(responsestring)
+        response.headers['Content-Type']='application/pdf'
+        response.headers['Content-Disposition']='inline;filename=output.pdf'
+        return response
