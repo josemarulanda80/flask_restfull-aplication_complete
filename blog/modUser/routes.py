@@ -3,7 +3,7 @@ from flask_restful import Resource
 from flask import (json,request)
 import sqlalchemy
 from blog.common.utils.Schema_global import IdSchema
-from blog.database import Role, User
+from blog.database import Role, User,FileUser
 from blog.common.utils.auth import RoleSchema, UserSchema
 from werkzeug.security import generate_password_hash,check_password_hash
 import jwt,json
@@ -33,11 +33,16 @@ class Auth(Resource):
         hash_password=generate_password_hash(user.password,method="sha256")
         user.password=hash_password
         rol= Role.query.filter_by(name="super_user").first()
+        
         if (rol == None):
             rol=Role(name="super_user")
         user.roles.append(rol)
         db.session.add_all([user,rol])
         db.session.commit()
+        file_user=FileUser(name="user.png",username_id=user.id,url="http://127.0.0.1:5000/files/user.png")
+        db.session.add(file_user)
+        db.session.commit()
+        
         return {"User_id":user.id},201
 
     def delete(self):

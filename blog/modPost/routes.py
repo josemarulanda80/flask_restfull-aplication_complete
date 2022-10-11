@@ -66,6 +66,7 @@ class PostBlog(Resource):
             return {"message":"Not Found"},404
 
 class BlogUser(Resource):
+    """Clase para obtener los post de un usuario"""
     def get(self,id):
   
         data = id_schema.load(request.view_args)
@@ -80,7 +81,8 @@ class BlogUser(Resource):
 
 
 class UniqueBlog(Resource):
-#     data = json.loads(request.data)
+#     data = json.loads(request.data)"""
+    """Actualizar un post individual """
     def get(self,id):
  
         data = id_schema.load(request.view_args)

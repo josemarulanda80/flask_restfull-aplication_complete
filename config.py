@@ -11,7 +11,7 @@ class ProductionConfig(Config):
     DEBUG=False
 
 class DevelopmentConfig(Config):
-    UPLOAD_FOLDER=os.path.realpath('.')+ '/blog/static/images'
+    UPLOAD_FOLDER=os.path.realpath('.')+ '/blog/static/images/'
     SECRET_KEY='192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
     DEBUG=True
     TESTING=True

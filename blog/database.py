@@ -1,4 +1,7 @@
+from email.policy import default
 from enum import unique
+
+from pkg_resources import require
 from blog import db
 from datetime import datetime
 
@@ -56,9 +59,8 @@ class FileUser(db.Model):
     id = db.Column(db.Integer,primary_key=True,autoincrement=True)
     name=db.Column(db.String(50))
     username_id=db.Column(db.Integer,db.ForeignKey("users.id",ondelete='CASCADE'))
-    url=db.Column(db.String(100),nullable=False)
+    url=db.Column(db.String(100),nullable=False,default="http://127.0.0.1:5000/files/user.png")
     created=db.Column(db.DateTime,nullable=False, default=datetime.utcnow)
-
     def __init__(self,name,username_id,url)-> None:
                 self.name=name
                 self.username_id=username_id
