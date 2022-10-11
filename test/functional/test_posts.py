@@ -125,5 +125,5 @@ def test_get_post_individual():
     """Posts individual"""
     flask_app=app
     with flask_app.test_client() as test_client:
-        response = test_client.get('/posts/2')
+        response = test_client.get('/posts/18')
         assert response.status_code == 200

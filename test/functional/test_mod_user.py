@@ -195,7 +195,7 @@ def test_put_update_rol_existing(name_new_role):
     """actualizar role con dato ya existente"""
     flask_app =app
     with flask_app.test_client() as test_client:
-        response = test_client.put(f'/auth/user/roles/{1}',json={"name":name_new_role})
+        response = test_client.put(f'/auth/user/roles/{2}',json={"name":name_new_role})
         assert response.status_code==400
         assert response.json=={"message":"No puede cambiar el rol a uno ya existente"}
 
@@ -222,7 +222,7 @@ def test_post_role_user_correct():
     """actualizar role con dato ya existente"""
     flask_app =app
     with flask_app.test_client() as test_client:
-        response = test_client.post(f'/auth/user/roles/1',json={"id_user":1})
+        response = test_client.post(f'/auth/user/roles/2',json={"id_user":1})
         assert response.status_code==201
 
 def test_error_login_password():

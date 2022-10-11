@@ -87,6 +87,7 @@ def id_new_role():
 @pytest.fixture(scope='module')
 def name_new_role():
     rol = Role.query.all()
+    print(rol[1].name)
     return rol[1].name
 
 @pytest.fixture(scope='module')
@@ -123,4 +124,4 @@ def post_no_body():
 
 @pytest.fixture(scope='module')
 def post_body_correct():
-    return{"id":2,"title":"body","body":"title"}
+    return{"id":18,"title":"bcdcdody","body":"tkdnkcnslckdsnitle"}
