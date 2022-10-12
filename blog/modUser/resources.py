@@ -5,7 +5,7 @@ from blog.modUser.routes import AddRoles, Auth, Session, UpdateRoles
 api_bp = Blueprint('api',__name__,url_prefix='/auth')
 api = Api(api_bp)
 
-api.add_resource(Auth, '/user')
-api.add_resource(AddRoles,'/user/roles')
-api.add_resource(UpdateRoles,'/user/roles/<int:id_rol>')
+api.add_resource(Auth, '/users')
+api.add_resource(AddRoles,'/users/roles')
+api.add_resource(UpdateRoles,'/users/roles/<int:id_rol>')
 api.add_resource(Session, '/login')

@@ -2,8 +2,10 @@ import json
 from blog.database import User,Post,Sale,FileUser,Role
 import random
 import pytest
+from blog import app
 from werkzeug.security import generate_password_hash,check_password_hash
-
+from os import  getcwd, path,remove
+import io
 randlowercase = f"{chr(random.randint(ord('a'), ord('z')))}{chr(random.randint(ord('a'), ord('z')))}{chr(random.randint(ord('a'), ord('z')))}"
 
 @pytest.fixture(scope='module')
@@ -85,12 +87,6 @@ def id_new_role():
     return rol[1].id
 
 @pytest.fixture(scope='module')
-def name_new_role():
-    rol = Role.query.all()
-    print(rol[1].name)
-    return rol[1].name
-
-@pytest.fixture(scope='module')
 def post_user_bad():
     json=  { "author": 0, "body": "python coifwsnciosc", "title": "algo"}
     return json
@@ -125,3 +121,10 @@ def post_no_body():
 @pytest.fixture(scope='module')
 def post_body_correct():
     return{"id":18,"title":"bcdcdody","body":"tkdnkcnslckdsnitle"}
+
+@pytest.fixture(scope='module')
+def post_body_correct_file():
+   
+    data={}
+    data['file'] = (io.BytesIO(b"abcdef"), 'imagesScreenshot_10.png')
+    return data
