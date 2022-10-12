@@ -67,7 +67,7 @@ class UserImg(Resource):
 class PdfUser(Resource):
     """para descargar archivo pdf"""
     def get(self,id):
-        path_wkthmltopdf = b'C:\Program Files\wkhtmltopdf\\bin\wkhtmltopdf.exe'
+        path_wkthmltopdf = 'C:\Program Files\wkhtmltopdf\\bin\wkhtmltopdf.exe'
         config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
     
         data = id_schema.load(request.view_args)

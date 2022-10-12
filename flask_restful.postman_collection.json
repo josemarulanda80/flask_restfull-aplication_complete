@@ -1,0 +1,3205 @@
+{
+	"info": {
+		"_postman_id": "df32fdd4-592f-4587-ba1e-08b55b2d1024",
+		"name": "flask_restful",
+		"description": "Aplicación con flask y flask-restful, cuenta con varios enpoinds, creación de tokens, de usuarios y roles, además de encriptación de contraseñas, manejo de urls entre otros",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14169397"
+	},
+	"item": [
+		{
+			"name": "User_Roles",
+			"item": [
+				{
+					"name": "http://127.0.0.1:5000/auth/users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admind\",\r\n    \"password\":\"admind\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"users"
+							]
+						},
+						"description": "Servicio para crear un usuario"
+					},
+					"response": [
+						{
+							"name": "Usuario nuevo creado con exito",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin1\",\r\n    \"password\": \"admin1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user"
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 22:53:49 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"User_id\": 146\n}"
+						},
+						{
+							"name": "Nombre de usuario ya registrado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin1\",\r\n    \"password\": \"admin1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 22:58:44 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Usuario ya registrado\"\n}"
+						},
+						{
+							"name": "Keys inconrrectas del json",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"uername\": \"admin1\",\r\n    \"password\": \"admin1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user"
+									]
+								}
+							},
+							"status": "UNPROCESSABLE ENTITY",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:00:15 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"uername\": [\n        \"Unknown field.\"\n    ]\n}"
+						},
+						{
+							"name": "http://127.0.0.1:5000/auth/user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "Información json incompleto",
+									"host": [
+										"Información json incompleto"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:02:25 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"bad request\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/users?id=8",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/users?id=147",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "147"
+								}
+							]
+						},
+						"description": "Servicio para borrar usuario"
+					},
+					"response": [
+						{
+							"name": "Borrar usuario existente",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user?id=147",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "147"
+										}
+									]
+								}
+							},
+							"status": "NO CONTENT",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:08:43 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Borrar usuario existente",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user?id=147",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "147"
+										}
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:09:11 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"archivo no existe\"\n}"
+						},
+						{
+							"name": "No se ingresa el id para borrar el usuairo",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "147",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:09:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"bad request\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Servicio para cerrar sesión"
+					},
+					"response": [
+						{
+							"name": "Cerrar sesión",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "NO CONTENT",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:11:00 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/users/roles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"name\":\"register\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/users/roles",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"users",
+								"roles"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Servicio para crear los roles"
+					},
+					"response": [
+						{
+							"name": "Crear rol nuevo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"name\":\"xhsa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:32:23 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Role_id\": 134\n}"
+						},
+						{
+							"name": "Rol ya registrado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"name\":\"xhsa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:34:00 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Role ya registrado\"\n}"
+						},
+						{
+							"name": "Paramertro no corresponde al esperado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"nme\":\"xhsa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "UNPROCESSABLE ENTITY",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:35:03 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"nme\": [\n        \"Unknown field.\"\n    ]\n}"
+						},
+						{
+							"name": "Json mal redactado o vacio",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:36:33 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"bad request\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/users/roles?id=8",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"name\":\"moderator\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/users/roles?id=55",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"users",
+								"roles"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "55",
+									"description": "Identificador de rol a borrar"
+								}
+							]
+						},
+						"description": "Servicio para borrar roles"
+					},
+					"response": [
+						{
+							"name": "Borrar adecuadamente",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"name\":\"moderator\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles?id=54",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "54"
+										}
+									]
+								}
+							},
+							"status": "NO CONTENT",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:59:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Borrar rol que no existe",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"name\":\"moderator\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles?id=54",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "54"
+										}
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:59:58 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"archivo no existe\"\n}"
+						},
+						{
+							"name": "Borrar rol no existente",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"name\":\"moderator\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles?id=55",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "55"
+										}
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:12:50 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admind\",\r\n    \"password\":\"admind\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Servicio para loggear un usuario"
+					},
+					"response": [
+						{
+							"name": "Login correcto de un usuario",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:12:57 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJhZG1pbiIsImV4cCI6MTY2NTA5OTc3N30.gF12exIIDlmZ0uMhOxjMBWfrYqo6ygFGItMlkrb2x7E\",\n    \"id\": 3\n}"
+						},
+						{
+							"name": "Keys json no correpondientes al modelo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"usernme\":\"admin\",\r\n    \"password\":\"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "UNPROCESSABLE ENTITY",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:19:29 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"usernme\": [\n        \"Unknown field.\"\n    ]\n}"
+						},
+						{
+							"name": "Contraseña incorrecta",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"a\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:23:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"bad request\"\n}"
+						},
+						{
+							"name": "Falta un parametro",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:27:06 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"bad request\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/users/roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/users/roles",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"users",
+								"roles"
+							]
+						},
+						"description": "Servicio para obtener todos los roles"
+					},
+					"response": [
+						{
+							"name": "Obtener todos los roles",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3690"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Oct 2022 23:28:02 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"roles\": [\n        {\n            \"id\": 1,\n            \"name\": \"aa\"\n        },\n        {\n            \"id\": 54,\n            \"name\": \"eoj\"\n        },\n        {\n            \"id\": 14,\n            \"name\": \"eye\"\n        },\n        {\n            \"id\": 88,\n            \"name\": \"eyveyveyveyveyv\"\n        },\n        {\n            \"id\": 41,\n            \"name\": \"fcz\"\n        },\n        {\n            \"id\": 57,\n            \"name\": \"gan\"\n        },\n        {\n            \"id\": 16,\n            \"name\": \"gps\"\n        },\n        {\n            \"id\": 26,\n            \"name\": \"hik\"\n        },\n        {\n            \"id\": 12,\n            \"name\": \"huq\"\n        },\n        {\n            \"id\": 69,\n            \"name\": \"ice\"\n        },\n        {\n            \"id\": 115,\n            \"name\": \"iwkiwkiwkiwkiwk41.17911121372133\"\n        },\n        {\n            \"id\": 98,\n            \"name\": \"jhjjhjjhjjhjjhj\"\n        },\n        {\n            \"id\": 120,\n            \"name\": \"jnwjnwjnwjnwjnw17.95251133772603\"\n        },\n        {\n            \"id\": 82,\n            \"name\": \"jtmjtm\"\n        },\n        {\n            \"id\": 49,\n            \"name\": \"jzz\"\n        },\n        {\n            \"id\": 126,\n            \"name\": \"knckncknckncknc38.269649854269815\"\n        },\n        {\n            \"id\": 108,\n            \"name\": \"kvxkvxkvxkvxkvx49.70495946869858\"\n        },\n        {\n            \"id\": 22,\n            \"name\": \"lij\"\n        },\n        {\n            \"id\": 34,\n            \"name\": \"ljl\"\n        },\n        {\n            \"id\": 92,\n            \"name\": \"lyqlyqlyqlyqlyq\"\n        },\n        {\n            \"id\": 32,\n            \"name\": \"mdu\"\n        },\n        {\n            \"id\": 124,\n            \"name\": \"mfzmfzmfzmfzmfz32.72967448347669\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"mhb\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"moderator\"\n        },\n        {\n            \"id\": 30,\n            \"name\": \"mrb\"\n        },\n        {\n            \"id\": 122,\n            \"name\": \"mufmufmufmufmuf42.24620195890865\"\n        },\n        {\n            \"id\": 15,\n            \"name\": \"mww\"\n        },\n        {\n            \"id\": 11,\n            \"name\": \"net\"\n        },\n        {\n            \"id\": 61,\n            \"name\": \"nld\"\n        },\n        {\n            \"id\": 36,\n            \"name\": \"nnb\"\n        },\n        {\n            \"id\": 118,\n            \"name\": \"novnovnovnovnov21.900772182490503\"\n        },\n        {\n            \"id\": 75,\n            \"name\": \"onu\"\n        },\n        {\n            \"id\": 103,\n            \"name\": \"paspaspaspaspas\"\n        },\n        {\n            \"id\": 94,\n            \"name\": \"phzphzphzphzphz\"\n        },\n        {\n            \"id\": 79,\n            \"name\": \"ptwptw\"\n        },\n        {\n            \"id\": 43,\n            \"name\": \"qak\"\n        },\n        {\n            \"id\": 117,\n            \"name\": \"qfoqfoqfo29.067468966744904\"\n        },\n        {\n            \"id\": 128,\n            \"name\": \"qfoqfoqfoqfoqfo26.629505769250706\"\n        },\n        {\n            \"id\": 87,\n            \"name\": \"qjwqjwqjw47.90057010705438\"\n        },\n        {\n            \"id\": 130,\n            \"name\": \"qjwqjwqjwqjwqjw72.68789326390907\"\n        },\n        {\n            \"id\": 63,\n            \"name\": \"qyc\"\n        },\n        {\n            \"id\": 65,\n            \"name\": \"rcj\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"reh\"\n        },\n        {\n            \"id\": 80,\n            \"name\": \"reoreo\"\n        },\n        {\n            \"id\": 72,\n            \"name\": \"sgx\"\n        },\n        {\n            \"id\": 131,\n            \"name\": \"super_user\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"xonxonxon83.36194394592987\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/users/roles/1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"aa\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/users/roles/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"users",
+								"roles",
+								"1"
+							]
+						},
+						"description": "Servicio para actualizar los roles"
+					},
+					"response": [
+						{
+							"name": "Rol actualizado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"aa\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:13:47 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"rol actualizado\"\n}"
+						},
+						{
+							"name": "No cumple con el esquna de role",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"\":\"aa\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"status": "UNPROCESSABLE ENTITY",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:17:14 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"\": [\n        \"Unknown field.\"\n    ]\n}"
+						},
+						{
+							"name": "El rol no existe",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"aa\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/0",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"0"
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "142"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:18:05 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.\"\n}"
+						},
+						{
+							"name": "Cambiar el rol a uno ya existente",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"eye\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:28:48 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No puede cambiar el rol a uno ya existente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/auth/users/roles/1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id_user\":1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/users/roles/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"users",
+								"roles",
+								"3"
+							]
+						},
+						"description": "Añadir un rol a un usuario"
+					},
+					"response": [
+						{
+							"name": "Añadir role a un usuario",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id_user\":1}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "18"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:41:06 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": 1\n}"
+						},
+						{
+							"name": "Usuario no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id_user\":0}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:45:36 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not found\"\n}"
+						},
+						{
+							"name": "Rol no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id_user\":1}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/0",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"0"
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:45:57 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not found\"\n}"
+						},
+						{
+							"name": "Json vacio o defectuoso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"\":1}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/auth/user/roles/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"auth",
+										"user",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Oct 2022 00:46:19 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Bat request\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Colección con los enpoinds relacionados con usuarios y roles"
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "http://127.0.0.1:5000/post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"posts"
+							]
+						},
+						"description": "Servicio para obtener todos los posteos de todos los usuarios"
+					},
+					"response": [
+						{
+							"name": "Todos los posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "574"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:29:34 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"post\": [\n        {\n            \"id\": 2,\n            \"title\": \"body\",\n            \"body\": \"title\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/posts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": 1,\r\n    \"body\": \"python coifwsnciosc\",\r\n    \"title\": \"algo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"posts"
+							]
+						},
+						"description": "Servicio para crear un post"
+					},
+					"response": [
+						{
+							"name": "Crear un post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\": 1,\r\n    \"body\": \"python coifwsnciosc\",\r\n    \"title\": \"algo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "CREATED",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:29:46 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"post_id\": 8\n}"
+						},
+						{
+							"name": "Falta parametro para enviar",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\": 1,\r\n    \"body\": \"python coifwsnciosc\"\r\n  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:31:08 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"bad request\"\n}"
+						},
+						{
+							"name": "Key del json no corresponde al que se espera",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\": 1,\r\n    \"bdy\": \"python coifwsnciosc\",\r\n    \"title\": \"algo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "UNPROCESSABLE ENTITY",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:31:34 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"bdy\": [\n        \"Unknown field.\"\n    ]\n}"
+						},
+						{
+							"name": "Usuario que desea realizar el posteo no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\": 0,\r\n    \"body\": \"python coifwsnciosc\",\r\n    \"title\": \"algo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:32:14 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Usuario no existe\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/posts?id=1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/posts?id=1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Servicio para borrar un post"
+					},
+					"response": [
+						{
+							"name": "Post borrado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts?id=3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "NO CONTENT",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:36:37 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Borrar post que no existe",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts?id=3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:36:55 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not found\"\n}"
+						},
+						{
+							"name": "Key param incorrecto",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts?i",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "i",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "UNPROCESSABLE ENTITY",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:37:33 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"i\": [\n        \"Unknown field.\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/posts/user/1/posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/posts/user/1/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"posts",
+								"user",
+								"1",
+								"posts"
+							]
+						},
+						"description": "Servicio para obtener los post publicados por un usuario"
+					},
+					"response": [
+						{
+							"name": "Post publicados por un usuario",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts/user/1/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts",
+										"user",
+										"1",
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "598"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:41:39 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"Jose\",\n    \"post\": [\n        {\n            \"title\": \"body\",\n            \"body\": \"title\",\n            \"id\": 2\n        },\n        {\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\",\n            \"id\": 5\n        },\n        {\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\",\n            \"id\": 6\n        },\n        {\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\",\n            \"id\": 7\n        },\n        {\n            \"title\": \"algo\",\n            \"body\": \"python coifwsnciosc\",\n            \"id\": 8\n        }\n    ]\n}"
+						},
+						{
+							"name": "Usuario no existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts/user/0/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts",
+										"user",
+										"0",
+										"posts"
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:42:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/posts",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":2,\r\n    \"title\":\"lkdsj\",\r\n    \"body\":\"ldkjhg\"\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"posts"
+							]
+						},
+						"description": "Servicio para actualizar un post"
+					},
+					"response": [
+						{
+							"name": "Post actualizado correctamente",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":2,\r\n    \"title\":\"body\",\r\n    \"body\":\"title\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 00:47:02 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Post actualizado correctamente\"\n}"
+						},
+						{
+							"name": "Json con parametros faltantes",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":2,\r\n    \"title\":\"body\"\r\n\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 01:12:48 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"bad request\"\n}"
+						},
+						{
+							"name": "Parametro equivocado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":2,\r\n    \"title\":\"body\",\r\n    \"\":\"fdf\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "UNPROCESSABLE ENTITY",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 01:13:27 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"\": [\n        \"Unknown field.\"\n    ]\n}"
+						},
+						{
+							"name": "Post no existe",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":1,\r\n    \"title\":\"bjkhhjjkjkody\",\r\n    \"body\":\"fdf\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 01:47:16 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/posts/2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/posts/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"posts",
+								"2"
+							]
+						},
+						"description": "Servicio para obtener la información de un blog individual"
+					},
+					"response": [
+						{
+							"name": "Obtener post individual",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts/2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:42:02 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"title\": \"body\",\n    \"body\": \"title\",\n    \"id\": 2\n}"
+						},
+						{
+							"name": "Post no encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/posts/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"status": "NOT FOUND",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:48:45 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Colección que contiene los servicios relacionados con los post"
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "http://127.0.0.1:5000/files/user.png",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/files/user.png",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"files",
+								"user.png"
+							]
+						},
+						"description": "Servicio para obtener la imagen en el servidor"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/files/download/user.png",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/files/downloads/user.png",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"files",
+								"downloads",
+								"user.png"
+							]
+						},
+						"description": "Servicio para descargar la imagen"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/files/user/1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/josem/OneDrive/Escritorio/Screenshot_10.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/files/users/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"files",
+								"users",
+								"1"
+							]
+						},
+						"description": "Servicio para agregar o actualizar una imagen"
+					},
+					"response": [
+						{
+							"name": "Imagen actualizada",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/josem/OneDrive/Escritorio/Screenshot_10.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/files/users/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"files",
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Oct 2022 19:12:43 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"imagen del usuario actualizada con exito\"\n}"
+						},
+						{
+							"name": "Usuario no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/josem/OneDrive/Escritorio/Screenshot_10.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:5000/files/users/0",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"files",
+										"users",
+										"0"
+									]
+								}
+							},
+							"status": "BAD REQUEST",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Oct 2022 19:13:09 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Bad request\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/files/users/1/imgs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/files/users/1/imgs",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"files",
+								"users",
+								"1",
+								"imgs"
+							]
+						},
+						"description": "Servicio para obtener la imagen de perfil de un usuario"
+					},
+					"response": [
+						{
+							"name": "Imagen por usuario",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/files/users/1/img",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"files",
+										"users",
+										"1",
+										"img"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Oct 2022 19:14:29 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"url\": \"http://127.0.0.1:5000/files/Screenshot_10.png\"\n}"
+						},
+						{
+							"name": "El usuario no existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:5000/files/users/0/img",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"files",
+										"users",
+										"0",
+										"img"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.0.3 Python/3.10.6"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 11 Oct 2022 19:24:00 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://127.0.0.1:5000/files/users/1/pdfs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/files/users/1/pdfs",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"files",
+								"users",
+								"1",
+								"pdfs"
+							]
+						},
+						"description": "Servicio para obtener información de un paciente"
+					},
+					"response": []
+				}
+			],
+			"description": "colección que tiene los servicios relacionados con archivos"
+		}
+	]
+}
