@@ -7,6 +7,8 @@ from blog.common.utils.Schema_global import IdSchema, NameFileSchema
 from blog import app
 from os import  getcwd, path,remove
 import pdfkit
+from werkzeug.utils import secure_filename
+import os
 
 name_file_image=NameFileSchema()
 id_schema=IdSchema()
@@ -40,14 +42,21 @@ class FileUserPostPut(Resource):
             if   image != None:
                 return self.put(image,file,user)
             else:
-                file.save(app.config.get('UPLOAD_FOLDER') + file.filename)
+                # file.save(secure_filename(file.filename))
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                # file.save(app.config.get('UPLOAD_FOLDER') + file.filename)
                 db.session.add(new_file)
                 db.session.commit()
                 return {"message":"imagen agregada al usuario con exito"},201  
     def put(self,image,file,user):
             if path.isfile(app.config.get('UPLOAD_FOLDER')+image.name)==True :
                 remove(app.config.get('UPLOAD_FOLDER')+image.name)
-            file.save(app.config.get('UPLOAD_FOLDER') + file.filename)
+            
+            # file.save(secure_filename(file.filename))
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # file.save(app.config.get('UPLOAD_FOLDER') + file.filename)
             image.name=file.filename
             image.url=f"http://127.0.0.1:5000/files/{file.filename}"
             image.username_id=user.id
