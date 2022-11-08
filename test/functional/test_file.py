@@ -7,7 +7,7 @@ from blog import db
 from blog.database import FileUser
 
 def test_get_pdf_user_correct():
-    """obtener todos los post existentes"""
+    """obtener el file de un usuario"""
 
     flask_app =app
     with flask_app.test_client() as test_client:
@@ -20,7 +20,7 @@ def test_get_pdf_user_correct():
         #  assert response.headers['Content-Disposition']=='inline;filename=output.pdf'
 
 def test_get_img_correct():
-    """obtener todos los post existentes"""
+    """obtener imagen"""
     flask_app =app
     with flask_app.test_client() as test_client:
         response = test_client.get('/files/user.png')
@@ -29,7 +29,7 @@ def test_get_img_correct():
 
 
 def test_dowload_img():
-    """obtener todos los post existentes"""
+    """descargar imagen"""
     flask_app =app
     with flask_app.test_client() as test_client:
         response = test_client.get('/files/downloads/user.png')
@@ -37,14 +37,14 @@ def test_dowload_img():
         assert response.headers['Content-Type'] == 'image/png'
 
 def test_post_img_no_user_no_data():
-    """obtener todos los post existentes"""
+    """obtener archivos de usuario que no existe sin enviar un archivo"""
     flask_app =app
     with flask_app.test_client() as test_client:
         response = test_client.post('/files/users/0')
         assert response.status_code==400
 
 def test_post_img_no_user():
-    """obtener todos los post existentes"""
+    """obtener de usuario que no existe """
     data={}
     data['file'] = (io.BytesIO(b"abcdef"), 'imagesScreenshot_10.jpg')
     flask_app =app
@@ -54,7 +54,7 @@ def test_post_img_no_user():
         assert response.json == {"message":"Not found"}
 
 def test_add_user_img(post_body_correct):
-    """obtener todos los post existentes"""
+    """Actualizar imagen de un usuario"""
     data={}
     data['file'] = (io.BytesIO(b"abcdef"), 'imagesScreenshot_10.jpg')
     flask_app =app
@@ -65,7 +65,7 @@ def test_add_user_img(post_body_correct):
         assert response.json == {"message":"imagen del usuario actualizada con exito"}
 
 def test_put_user_img(post_body_correct_file):
-    """obtener todos los post existentes"""
+    """Agregar imagen a un usuario"""
 
     flask_app =app
     with flask_app.test_client() as test_client:
@@ -79,7 +79,7 @@ def test_put_user_img(post_body_correct_file):
 
 
 def test_get_image_user_incorrect():
-    """obtener todos los post existentes"""
+    """visualizar imagen  de ususairo que no existe"""
 
     flask_app =app
     with flask_app.test_client() as test_client:
@@ -88,7 +88,7 @@ def test_get_image_user_incorrect():
          assert response.json =={"message":"Not Found"}
 
 def test_get_image_user_correct():
-    """obtener todos los post existentes"""
+    """visualizar imagen de un usuario existente """
 
     flask_app =app
     with flask_app.test_client() as test_client:
@@ -96,7 +96,7 @@ def test_get_image_user_correct():
          assert response.status_code==200
 
 def test_get_pdf_user_incorrect():
-    """obtener todos los post existentes"""
+    """Descargar pdf de usuario que no existe"""
 
     flask_app =app
     with flask_app.test_client() as test_client:

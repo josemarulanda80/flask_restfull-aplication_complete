@@ -5,11 +5,13 @@ from pkg_resources import require
 from blog import db
 from datetime import datetime
 
+#Tabla intermedia creada apartir de una relación de muchos a mucho de la tabla users con la tabla roles
 tags = db.Table('tags',
                 db.Column('users_id',db.Integer,db.ForeignKey('users.id',ondelete="CASCADE")),
                 db.Column('roles_id',db.Integer,db.ForeignKey('roles.id',ondelete="CASCADE")))
 
 
+#Modelo para un usuario
 class User(db.Model):
     __tablename__='users'
     id=db.Column(db.Integer,primary_key=True,autoincrement=True)
@@ -25,7 +27,7 @@ class User(db.Model):
     def __repr__(self) -> str:
         return f'User: {self.username}'
 
-
+#Modelo para una venta
 class Sale(db.Model):
     __tablename__="sales"
     id=db.Column(db.Integer,autoincrement=True,primary_key=True)
@@ -40,6 +42,7 @@ class Sale(db.Model):
     def __repr__(self) -> str:
         return f'Sale: {self.venta}'
 
+#Modelo para los posts
 class Post(db.Model):
     __tablename__='posts'
     id=db.Column(db.Integer,primary_key=True,autoincrement=True)
@@ -54,6 +57,7 @@ class Post(db.Model):
     def __repr__(self) -> str:
         return f'Post: {self.author}'
 
+#Modelo para los archivos de los usuario
 class FileUser(db.Model):
     __tablename__='files'
     id = db.Column(db.Integer,primary_key=True,autoincrement=True)
@@ -68,6 +72,7 @@ class FileUser(db.Model):
     def __repr__(self) -> str:
             return f'Name: {self.name}'
 
+#Modelo para los distintos roles que un usuario puede tener
 class Role(db.Model):
     __tablename__="roles"
     id = db.Column(db.Integer(), primary_key=True,autoincrement=True)

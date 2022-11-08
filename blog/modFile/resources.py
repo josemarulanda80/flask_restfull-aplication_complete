@@ -3,6 +3,7 @@ from flask import  Blueprint
 from flask_restful import Api
 from blog.modFile.routes import FileUserDownload, FileUrl, FileUserPostPut, PdfUser, UserImg
 from blog.modPost.routes import BlogUser, PostBlog, UniqueBlog
+#Definición de las rutas y las clases 
 
 
 api_file = Blueprint('file',__name__,url_prefix='/files')

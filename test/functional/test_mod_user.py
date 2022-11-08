@@ -200,7 +200,7 @@ def test_put_update_rol_existing():
         assert response.json=={"message":"No puede cambiar el rol a uno ya existente"}
 
 def test_post_role_user_empty_jsons():
-    """actualizar role con dato ya existente"""
+    """actualizar role sin enviar parametros para actualizar"""
     flask_app =app
     with flask_app.test_client() as test_client:
         response = test_client.post(f'/auth/users/roles/1',json={})
@@ -210,7 +210,7 @@ def test_post_role_user_empty_jsons():
 
 
 def test_post_role_user_no_existing():
-    """actualizar role con dato ya existente"""
+    """actualizar role con usuario que no existe"""
     flask_app =app
     with flask_app.test_client() as test_client:
         response = test_client.post(f'/auth/users/roles/1',json={"id_user":0})
@@ -219,14 +219,14 @@ def test_post_role_user_no_existing():
 
 
 def test_post_role_user_correct():
-    """actualizar role con dato ya existente"""
+    """actualizar role"""
     flask_app =app
     with flask_app.test_client() as test_client:
         response = test_client.post(f'/auth/users/roles/3',json={"id_user":1})
         assert response.status_code==201
 
 def test_error_login_password():
-    """"""
+    """Loguearse con contraseña mal escrita"""
     flask_app =app
     with flask_app.test_client() as test_client:
         response = test_client.post('/auth/login',json={"username":"admin","password":"ad"})

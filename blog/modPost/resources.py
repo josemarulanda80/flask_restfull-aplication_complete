@@ -6,6 +6,7 @@ from blog.modPost.routes import BlogUser, PostBlog, UniqueBlog
 api_post = Blueprint('post',__name__,url_prefix='/posts')
 api = Api(api_post)
 
+#Definición de las rutas y las clases 
 
 api.add_resource(PostBlog,'')
 api.add_resource(UniqueBlog,"/<int:id>")

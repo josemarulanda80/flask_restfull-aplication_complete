@@ -32,6 +32,6 @@ def test_new_file(new_files):
     assert new_files.__repr__()==f'Name: {new_files.name}'
 
 def test_new_role(new_roles):
-    """Se comprueba el modelo de file"""
+    """Se comprueba el modelo de role"""
     assert new_roles.name=="super_user"
     assert new_roles.__repr__()==f'Role: {new_roles.name}'

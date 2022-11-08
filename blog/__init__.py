@@ -11,6 +11,7 @@ CORS(app)
 
 app.config.from_object('config.DevelopmentConfig')
 app.config.get('UPLOAD_FOLDER')
+#Para las migraciones y serializadores
 ma = Marshmallow()
 ma.init_app(app)
 db = SQLAlchemy(app)

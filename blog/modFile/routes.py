@@ -74,7 +74,7 @@ class UserImg(Resource):
                 return {"url":file.url},200
 
 class PdfUser(Resource):
-    """para descargar archivo pdf"""
+    """ classe para descargar archivo pdf"""
     def get(self,id):
         path_wkthmltopdf = 'C:\Program Files\wkhtmltopdf\\bin\wkhtmltopdf.exe'
         config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)

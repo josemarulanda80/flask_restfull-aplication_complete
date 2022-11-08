@@ -11,7 +11,7 @@ post_schema=PostSchema()
 id_schema=IdSchema()
 post_put_schema=PostPutSchema()
 class PostBlog(Resource):
-    """Clase para obtener todos los get existentes"""
+    """Clase para manejo de post"""
 
     def get(self):
         posts=Post.query.all()

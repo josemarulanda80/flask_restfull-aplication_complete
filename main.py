@@ -1,6 +1,6 @@
 from blog import app
 
-#las configuraciones del proyecto se encuentran en __init__.py de blog
+#the project settings can be found in the __init__.py file in the project folder
 
 if __name__=='__main__':
     app.run()

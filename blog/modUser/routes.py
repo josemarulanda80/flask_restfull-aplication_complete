@@ -59,7 +59,7 @@ class Auth(Resource):
             return {"message":"Not found"},404
 
 class Session(Resource):
-    """Clase relacionada con enviar cerrar sesion y loguear usuarios"""
+    """Clase relacionada con  cerrar sesion y loguear usuarios"""
     def get(self):
         db.session.close()
         return "",204
@@ -117,6 +117,7 @@ class AddRoles(Resource):
 
 
 class UpdateRoles(Resource):
+    """Clase para crear y actualizar roles"""
     def put(self,id_rol):
         try:
             role=role_schema.load(request.get_json())
